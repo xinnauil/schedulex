@@ -121,8 +121,15 @@
               "devServerTarget": "schedulex:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
-    }},
-  "defaultProject": "schedulex"
+    }
+  },
+  "defaultProject": "schedulex",
+  "cli": {
+    "analytics": "a5d87295-e046-46fd-91d7-3bd4b3b2672f"
+  }
 }
