@@ -10,6 +10,8 @@ export class SchedulexService {
 
   public accessTokenUrl = "https://webexapis.com/v1/access_token";
   
+  public token; 
+
   constructor(
     private http: HttpClient,
   ) { 
@@ -22,6 +24,14 @@ export class SchedulexService {
   //     {roomId: "1234"}
   //   ])
   // } 
+
+  setAuthToken(code: string): void {
+    this.token = code; 
+  }
+
+  getAuthToken(): any | undefined {
+    return this.token;     
+  }
 
   getToken(code: string): Observable<any> {
     let options = new HttpHeaders({
@@ -63,5 +73,15 @@ export class SchedulexService {
           room => room.items
         )
       );
-    }
+  }
+
+  scheduleMessage(payload: any): Observable<any> {
+    let local = "127.0.0.1:5000/scheduleMessageAPI";
+    return this.http.post<any>(local, payload);
+  } 
+
+  scheduleStatusChange(payload: any): Observable<any> {
+    let local = "127.0.0.1:5000/scheduleStatusChange";
+    return this.http.post<any>(local, payload);
+  } 
 }

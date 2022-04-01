@@ -50,6 +50,7 @@ export class ScheduleMessageComponent implements OnInit {
       x => {
         this.accessToken = x.access_token;
         console.log("My access token is: " + x.access_token);
+        this.service.setAuthToken(this.accessToken); 
         this.service.getRooms(this.accessToken).subscribe(
           rooms => {
             console.log(rooms);
@@ -58,6 +59,14 @@ export class ScheduleMessageComponent implements OnInit {
         )
       }
     )
+
+    // this.service.getRooms(this.accessToken).subscribe(
+    //   rooms => {
+    //     console.log(rooms);
+    //     this.rooms = rooms;
+    //   }
+    // )
+    
     // if (this.accessToken) {
     //   this.service.getMe(this.accessToken).subscribe(
     //     x => {
@@ -72,5 +81,16 @@ export class ScheduleMessageComponent implements OnInit {
 
   public submit(): void {
     console.log(this.scheduleMessageForm.value);
+    const payload = {
+      roomId: this.scheduleMessageForm.value.space,
+      ownerEmail: 'xinnliu@cisco.com',
+      token: this.accessToken,
+      send_time: this.scheduleMessageForm.value.time,
+      text: this.scheduleMessageForm.value.message,
+    }
+    this.service.scheduleMessage(
+      payload
+    ).subscribe(
+    )
   }
 }

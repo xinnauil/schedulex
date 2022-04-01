@@ -27,7 +27,7 @@
   </div>
   
   <div style="display: flex; margin-bottom: 12px;">
-    <div style="margin-right: 16px;">
+    <!-- <div style="margin-right: 16px;">
       <div>
         Date: 
       </div>
@@ -55,6 +55,13 @@
           <input formControlName="time" matInput type="time" placeholder="start date">
         </mat-form-field>
       </div>
+    </div> -->
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Date and time:</mat-label>
+        <input formControlName="time" matInput type="datetime-local">
+      </mat-form-field>
     </div>
   
   
