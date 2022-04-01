@@ -46,19 +46,28 @@ export class ScheduleMessageComponent implements OnInit {
       fullUrl.lastIndexOf("&")
     );
 
-    this.service.getToken(this.token).subscribe(
-      x => {
-        this.accessToken = x.access_token;
-        console.log("My access token is: " + x.access_token);
-        this.service.setAuthToken(this.accessToken); 
-        this.service.getRooms(this.accessToken).subscribe(
-          rooms => {
-            console.log(rooms);
-            this.rooms = rooms;
-          }
-        )
+    // this.service.getToken(this.token).subscribe(
+    //   x => {
+    //     this.accessToken = x.access_token;
+    //     console.log("My access token is: " + x.access_token);
+    //     this.service.setAuthToken(this.accessToken); 
+    //     this.service.getRooms(this.accessToken).subscribe(
+    //       rooms => {
+    //         console.log(rooms);
+    //         this.rooms = rooms;
+    //       }
+    //     )
+    //   }
+    // )
+
+
+    this.service.getRooms(this.service.getAuthToken()).subscribe(
+      rooms => {
+        console.log(rooms);
+        this.rooms = rooms;
       }
     )
+
 
     // this.service.getRooms(this.accessToken).subscribe(
     //   rooms => {

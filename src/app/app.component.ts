@@ -19,18 +19,20 @@ export class AppComponent implements OnInit{
 
   
   ngOnInit(): void {
-    // const fullUrl = window.location.href;
-    // this.token = window.location.href.substring(
-    //   fullUrl.indexOf("=") + 1, 
-    //   fullUrl.lastIndexOf("&")
-    // );
+    console.log("in app component");
+    const fullUrl = window.location.href;
+    this.token = window.location.href.substring(
+      fullUrl.indexOf("=") + 1, 
+      fullUrl.lastIndexOf("&")
+    );
 
-    // this.service.getToken(this.token).subscribe(
-    //   x => {
-    //     this.accessToken = x.access_token;
-    //     console.log("My access token is: " + x.access_token);
-    //   }
-    // )  
+    this.service.getToken(this.token).subscribe(
+      x => {
+        this.accessToken = x.access_token;
+        console.log("My app component access token is: " + x.access_token);
+        this.service.setAuthToken(this.accessToken);
+      }
+    )  
   }
 
 }
