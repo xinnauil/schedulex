@@ -10,8 +10,8 @@
     <mat-form-field appearance="fill" style="width: 472px">
       <mat-label>Room</mat-label>
       <mat-select formControlName="space" style="width: 2;">
-        <mat-option *ngFor="let room of (rooms | async)" [value]="room">
-          {{room.roomId}}
+        <mat-option *ngFor="let room of rooms" [value]="room.id">
+          {{room.title}}
         </mat-option>
       </mat-select>
     </mat-form-field>

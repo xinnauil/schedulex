@@ -11,11 +11,12 @@ import { SchedulexService } from '../schedulex.service';
 export class ScheduleMessageComponent implements OnInit {
 
   range: FormGroup; 
-  rooms: Observable<any>; 
+  rooms: any[]; 
   selectedValue: any;
   scheduleMessageForm: FormGroup; 
   token: string; 
   accessToken: string; 
+  me: any; 
 
   constructor(
     private service: SchedulexService,
@@ -25,7 +26,6 @@ export class ScheduleMessageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.rooms = this.service.getRooms();
     this.range = new FormGroup({
       start: new FormControl(),
       end: new FormControl(),
@@ -50,8 +50,23 @@ export class ScheduleMessageComponent implements OnInit {
       x => {
         this.accessToken = x.access_token;
         console.log("My access token is: " + x.access_token);
+        this.service.getRooms(this.accessToken).subscribe(
+          rooms => {
+            console.log(rooms);
+            this.rooms = rooms;
+          }
+        )
       }
     )
+    // if (this.accessToken) {
+    //   this.service.getMe(this.accessToken).subscribe(
+    //     x => {
+    //       console.log("me details:"); 
+    //       console.log(x);
+    //     }
+    //   )
+    // }
+
     
   }
 
